@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HelloFragment</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="edit_text">press the fragment1 button</string>
+    <string name="edited_text">button pressed</string>
+    <string name="send_button">send</string>
+    <string name="replace_fragment__button">replace fragment</string>
+    <string name="update_text">updated fragment</string>
+</resources>
