@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -30,12 +31,11 @@ public class MainActivity extends AppCompatActivity
         MyFirstFragment MyFragment1Ref = new MyFirstFragment();
         MyFirstFragment2 MyFragment2Ref = new MyFirstFragment2();
 
+        //add fragments
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.leftLinearLayout, MyFragment1Ref, "leftfragment");
         ft.add(R.id.rightLinearLayout, MyFragment2Ref, "rightfragment");
-        // ft.addToBackStack(null);
         ft.commit();
-
 
         //addFragment();
     }
@@ -63,39 +63,44 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onButtonSelected(int id) throws NullPointerException{
+    public void onButtonSelected(int id) {
 
-        if(id == R.id.left_button1) {
-            Fragment rightFragment = getSupportFragmentManager().findFragmentByTag("rightfragment");
 
-            if (rightFragment.getView().findViewById(R.id.editText2) == null) {
-                throw new NullPointerException();
-            } else {
-                //not null
+        FragmentTransaction ft;
+        Fragment rightFragment;
+
+
+        switch (id) {
+            case R.id.left_button1:
+                rightFragment = getSupportFragmentManager().findFragmentByTag("rightfragment");
                 EditText editTextRef = (EditText)rightFragment.getView().findViewById(R.id.editText2);
                 editTextRef.setText(R.string.edited_text);
-            }
+                break;
+            case R.id.left_button2:
+                UpdateFragment updateFragment = new UpdateFragment();
 
+                ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.rightLinearLayout, updateFragment, "rightgreenfragment");
+                ft.addToBackStack(null);
 
+                // Commit the transaction
+                ft.commit();
+                break;
+            case R.id.left_button3:
+                rightFragment = getSupportFragmentManager().findFragmentByTag("rightfragment");
 
-        } else {
-//          if (id == R.id.left_button2)
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            UpdateFragment updateFragment = new UpdateFragment();
-            ft.replace(R.id.rightLinearLayout, updateFragment);
-            ft.addToBackStack(null);
+                ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.rightLinearLayout, rightFragment);
+                ft.addToBackStack(null);
 
-            // Commit the transaction
-            ft.commit();
-
+                // Commit the transaction
+                ft.commit();
+                Log.d("MainActivity", "onButtonSelected button3");
+                break;
+            default:
+                Log.d("MainActivity", "onButtonSelected is wrong");
         }
 
-
-
-
-        //Fragment rightFragment = MyFirstFragment.this.getFragmentManager().findFragmentById(R.id.rightLinearLayout);
-        //EditText editTextRef = (EditText) rightFragment.getView().findViewById(R.id.editText2);
-        //editTextRef.setText("你已按下 Fragment1 按鍵");
     }
 
     void addFragment() {

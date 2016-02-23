@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fragment1"
+        android:text="@string/fragment1_text"
         android:textColor="#0000FF" />
 
     <Button
@@ -21,5 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/replace_fragment__button" />
+    <Button
+        android:id="@+id/left_button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recall_fragment__button" />
 
 </LinearLayout>

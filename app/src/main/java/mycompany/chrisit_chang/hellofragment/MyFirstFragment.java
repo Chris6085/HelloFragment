@@ -55,6 +55,7 @@ public class MyFirstFragment extends Fragment {
 
         Button button1;
         Button button2;
+        Button button3;
         View view;
 
         // Inflate the layout for this fragment
@@ -71,6 +72,13 @@ public class MyFirstFragment extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 mCallback.onButtonSelected(R.id.left_button2);
+            }
+        });
+
+        button3 = (Button) view.findViewById(R.id.left_button3);
+        button3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                mCallback.onButtonSelected(R.id.left_button3);
             }
         });
 
